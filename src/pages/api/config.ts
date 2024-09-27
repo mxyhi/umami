@@ -11,10 +11,12 @@ export interface ConfigResponse {
 export default async (req: NextApiRequest, res: NextApiResponse<ConfigResponse>) => {
   if (req.method === 'GET') {
     return ok(res, {
-      telemetryDisabled: !!process.env.DISABLE_TELEMETRY,
+      // telemetryDisabled: !!process.env.DISABLE_TELEMETRY,
+      telemetryDisabled: !process.env.DISABLE_TELEMETRY,
       trackerScriptName: process.env.TRACKER_SCRIPT_NAME,
       uiDisabled: !!process.env.DISABLE_UI,
-      updatesDisabled: !!process.env.DISABLE_UPDATES,
+      // updatesDisabled: !!process.env.DISABLE_UPDATES,
+      updatesDisabled: !process.env.DISABLE_UPDATES,
     });
   }
 

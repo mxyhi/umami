@@ -71,6 +71,7 @@ export async function getSession(req: NextApiRequestCollect): Promise<SessionDat
         id: sessionId,
         websiteId,
         hostname,
+        ip,
         browser,
         os,
         device,

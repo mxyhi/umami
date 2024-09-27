@@ -19,10 +19,10 @@ model User {
   updatedAt   DateTime? @updatedAt @map("updated_at") @db.Timestamp(0)
   deletedAt   DateTime? @map("deleted_at") @db.Timestamp(0)
 
-  websiteUser       Website[] @relation("user")
-  websiteCreateUser Website[] @relation("createUser")
-  teamUser TeamUser[]
-  report   Report[]
+  websiteUser       Website[]  @relation("user")
+  websiteCreateUser Website[]  @relation("createUser")
+  teamUser          TeamUser[]
+  report            Report[]
 
   @@map("user")
 }
@@ -31,6 +31,7 @@ model Session {
   id           String    @id @unique @map("session_id") @db.VarChar(36)
   websiteId    String    @map("website_id") @db.VarChar(36)
   hostname     String?   @db.VarChar(100)
+  ip           String?   @db.VarChar(50)
   browser      String?   @db.VarChar(20)
   os           String?   @db.VarChar(20)
   device       String?   @db.VarChar(20)
@@ -49,6 +50,7 @@ model Session {
   @@index([websiteId])
   @@index([websiteId, createdAt])
   @@index([websiteId, createdAt, hostname])
+  @@index([websiteId, createdAt, ip])
   @@index([websiteId, createdAt, browser])
   @@index([websiteId, createdAt, os])
   @@index([websiteId, createdAt, device])
@@ -174,8 +176,8 @@ model Team {
   updatedAt  DateTime? @updatedAt @map("updated_at") @db.Timestamp(0)
   deletedAt  DateTime? @map("deleted_at") @db.Timestamp(0)
 
-  website     Website[]
-  teamUser    TeamUser[]
+  website  Website[]
+  teamUser TeamUser[]
 
   @@index([accessCode])
   @@map("team")

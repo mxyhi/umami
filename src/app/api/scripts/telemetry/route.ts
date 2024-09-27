@@ -3,7 +3,7 @@ import { CURRENT_VERSION, TELEMETRY_PIXEL } from 'lib/constants';
 export async function GET() {
   if (
     process.env.NODE_ENV !== 'production' &&
-    process.env.DISABLE_TELEMETRY &&
+    // process.env.DISABLE_TELEMETRY &&
     process.env.PRIVATE_MODE
   ) {
     const script = `
